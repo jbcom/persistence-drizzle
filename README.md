@@ -27,7 +27,7 @@ every statement, every transaction and every foreign writer is serialized, and a
 npm install persistence-drizzle drizzle-orm
 ```
 
-`drizzle-orm` (`>=0.45.2 <1`) is the only peer dependency. Node 24 or later.
+`drizzle-orm` (`>=0.45.2 <1`) is the only peer dependency. Node.js 22, 24 and 26 are supported.
 
 ## Quick start
 
@@ -119,7 +119,7 @@ Full signatures are in [docs/API.md](docs/API.md), the invariants in [docs/ARCHI
 
 | | |
 | --- | --- |
-| Node | 24 and later (`node:sqlite`); CI runs 24 and 26 on Linux and 26 on Windows |
+| Node | Node.js 22, 24 and 26 (`node:sqlite`); CI runs each on Linux and 26 on Windows |
 | `drizzle-orm` | `>=0.45.2 <1` |
 | Module formats | ESM and CommonJS, with types for both |
 

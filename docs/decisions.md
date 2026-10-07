@@ -40,3 +40,9 @@ are persisted, so renaming them is a breaking change.
 
 The only peer dependency is `drizzle-orm`. `node:sqlite` is used through the built-in module, so the Node driver needs no
 native addon.
+
+## Supported Node lines
+
+Node.js 22, 24 and 26 are supported, with `engines.node` set to `>=22`. The full verification chain, including
+the packed ESM and CommonJS consumer smoke using `node:sqlite`, passes on Node 22 and 26. CI verifies all three
+maintained lines on Linux and Node 26 on Windows. Local development defaults to major 26 without requiring an exact patch.

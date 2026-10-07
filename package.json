@@ -1,6 +1,6 @@
 {
   "name": "persistence-drizzle",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A typed Drizzle ORM database over any SQLite driver: one lock serializing every statement, BEGIN IMMEDIATE transactions, drizzle-kit migrations at open, typed Preferences and a hardened export envelope. Drivers for Capacitor SQLite and node:sqlite.",
   "type": "module",
   "license": "MIT",

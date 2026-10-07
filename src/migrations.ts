@@ -22,7 +22,7 @@ export interface DrizzleJournal {
   readonly entries: readonly { readonly idx: number; readonly tag: string }[]
 }
 
-export const MIGRATIONS_TABLE = '__arcade_migrations'
+export const MIGRATIONS_TABLE = '__persistence_drizzle_migrations'
 
 export type MigrationFailure = 'invalid-list' | 'unknown-applied' | 'drift' | 'failed'
 

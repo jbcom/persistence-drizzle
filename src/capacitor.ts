@@ -1,5 +1,5 @@
 /**
- * The device and web driver: Drizzle over the one connection `@arcade-cabinet/persistence-save` opens.
+ * The device and web driver: Drizzle over the one connection `persistence-save` opens.
  *
  * persistence-save's `createPersistence` already owns the hard parts (the `<jeep-sqlite>` element and its WASM assets on
  * the web, the Capacitor connection manager, SQLCipher on native, the web store's flush) and exposes `withConnection` and

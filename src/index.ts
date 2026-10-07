@@ -1,7 +1,7 @@
 /**
- * @arcade-cabinet/persistence-drizzle: a typed Drizzle layer for arcade-cabinet saves, composed over the one SQLite
- * connection @arcade-cabinet/persistence-save opens. The root export is engine-free; drivers live in `./capacitor`
- * (device and web, over persistence-save) and `./node` (`node:sqlite`).
+ * persistence-drizzle: a typed Drizzle database over any SQLite driver, with one lock serializing every statement,
+ * drizzle-kit migrations at open, typed Preferences and a hardened export envelope. The root export is engine-free;
+ * drivers live in `./capacitor` (device and web, over persistence-save's connection) and `./node` (`node:sqlite`).
  */
 export {
   type Db,

@@ -1,6 +1,6 @@
 /**
  * The Node driver: `node:sqlite` (built into Node 24), for unit tests, tools and scripts. No native addon and no install
- * script, so it runs wherever the fleet's Node does. It goes through the same Drizzle path as the device driver.
+ * script, so it runs wherever Node 24 or later does. It goes through the same Drizzle path as the device driver.
  *
  * `readMigrationsFolder` reads the folder `drizzle-kit generate` writes (`meta/_journal.json` plus one `.sql` per tag).
  */

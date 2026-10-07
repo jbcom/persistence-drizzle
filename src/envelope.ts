@@ -11,7 +11,7 @@
  * validates `data` and writes it in one transaction, so an import that fails changes nothing.
  */
 
-export const ENVELOPE_FORMAT = 'arcade-cabinet.save'
+export const ENVELOPE_FORMAT = 'persistence-drizzle.save'
 
 export interface SaveEnvelope<T> {
   readonly format: typeof ENVELOPE_FORMAT

@@ -37,11 +37,11 @@ describe('the save envelope', () => {
     expect(parseEnvelope(other, target)).toEqual({ ok: false, reason: 'wrong-app' })
     const kind = createEnvelope({ app: 'game', kind: 'settings' }, 1, {}, 0)
     expect(parseEnvelope(kind, target)).toEqual({ ok: false, reason: 'wrong-kind' })
-    for (const text of ['{}', '[]', 'null', '"x"', '{"format":"arcade-cabinet.save"}']) {
+    for (const text of ['{}', '[]', 'null', '"x"', '{"format":"persistence-drizzle.save"}']) {
       expect(parseEnvelope(text, target)).toEqual({ ok: false, reason: 'not-envelope' })
     }
     const bad = JSON.stringify({
-      format: 'arcade-cabinet.save',
+      format: 'persistence-drizzle.save',
       app: 'game',
       kind: 'profile',
       version: 1.5,

@@ -44,10 +44,10 @@ describe('migrations from the drizzle-kit folder', () => {
       applied: ['0000_first_save', '0001_coins_and_items'],
       ran: ['0000_first_save', '0001_coins_and_items'],
     })
-    await database.db.insert(players).values({ id: 1, name: 'Nakhtmin', coins: 3 })
+    await database.db.insert(players).values({ id: 1, name: 'Player One', coins: 3 })
     await database.db.insert(items).values({ playerId: 1, kind: 'khopesh' })
     expect(await database.db.select().from(players)).toEqual([
-      { id: 1, name: 'Nakhtmin', coins: 3 },
+      { id: 1, name: 'Player One', coins: 3 },
     ])
     await database.close()
   })

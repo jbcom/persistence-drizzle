@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.3](https://github.com/jbcom/persistence-drizzle/compare/v0.1.2...v0.1.3) (2026-10-07)
+
+
+### Bug Fixes
+
+* declare node adapter compatibility floor ([54552df](https://github.com/jbcom/persistence-drizzle/commit/54552df3a42d9245b31b83ce04146b16738934d7))
+* declare node adapter compatibility floor ([783e012](https://github.com/jbcom/persistence-drizzle/commit/783e012759ab262bc318066f61397109f93b3574))
+
 ## [0.1.2](https://github.com/jbcom/persistence-drizzle/compare/v0.1.1...v0.1.2) (2026-10-07)
 
 

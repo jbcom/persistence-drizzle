@@ -1,23 +1,40 @@
 {
-  "name": "@arcade-cabinet/persistence-drizzle",
+  "name": "persistence-drizzle",
   "version": "0.1.0",
-  "description": "A typed Drizzle ORM layer for arcade-cabinet games, composed over @arcade-cabinet/persistence-save's one SQLite connection (Capacitor SQLite on native, jeep-sqlite on the web) and node:sqlite in Node tests: drizzle-kit migrations run at startup, serialized writes and transactions, a lock shared with persistence-save's snapshot saves, typed Preferences, and a hardened save envelope for export and import. Extracted from the Drizzle-over-Capacitor clients in grailguard, concrete-vermin, kings-road and a-good-old-fashioned-adventure.",
+  "description": "A typed Drizzle ORM database over any SQLite driver: one lock serializing every statement, BEGIN IMMEDIATE transactions, drizzle-kit migrations at open, typed Preferences and a hardened export envelope. Drivers for Capacitor SQLite and node:sqlite.",
   "type": "module",
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "author": "Jon Bogaty <jon@jonbogaty.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jbcom/curse-of-the-mummy.git",
-    "directory": "packages/persistence-drizzle"
+    "url": "git+https://github.com/jbcom/persistence-drizzle.git"
   },
   "bugs": {
-    "url": "https://github.com/jbcom/curse-of-the-mummy/issues"
+    "url": "https://github.com/jbcom/persistence-drizzle/issues"
   },
+  "homepage": "https://github.com/jbcom/persistence-drizzle#readme",
+  "keywords": [
+    "drizzle",
+    "drizzle-orm",
+    "sqlite",
+    "sqlite-proxy",
+    "capacitor",
+    "capacitor-sqlite",
+    "node-sqlite",
+    "migrations",
+    "drizzle-kit",
+    "transactions",
+    "persistence",
+    "save-game",
+    "game-dev"
+  ],
   "engines": {
     "node": ">=24"
   },
+  "packageManager": "pnpm@12.10.1",
   "publishConfig": {
-    "access": "restricted",
-    "registry": "https://registry.npmjs.org/"
+    "access": "public",
+    "provenance": true
   },
   "sideEffects": false,
   "main": "./dist/cjs/index.cjs",
@@ -25,41 +42,107 @@
   "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/esm/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.cjs"
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
     },
     "./capacitor": {
-      "types": "./dist/esm/capacitor.d.ts",
-      "import": "./dist/esm/capacitor.js",
-      "require": "./dist/cjs/capacitor.cjs"
+      "import": {
+        "types": "./dist/esm/capacitor.d.ts",
+        "default": "./dist/esm/capacitor.js"
+      },
+      "require": {
+        "types": "./dist/cjs/capacitor.d.cts",
+        "default": "./dist/cjs/capacitor.cjs"
+      }
     },
     "./node": {
-      "types": "./dist/esm/node.d.ts",
-      "import": "./dist/esm/node.js",
-      "require": "./dist/cjs/node.cjs"
+      "import": {
+        "types": "./dist/esm/node.d.ts",
+        "default": "./dist/esm/node.js"
+      },
+      "require": {
+        "types": "./dist/cjs/node.d.cts",
+        "default": "./dist/cjs/node.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
+  "typesVersions": {
+    "*": {
+      "capacitor": [
+        "./dist/esm/capacitor.d.ts"
+      ],
+      "node": [
+        "./dist/esm/node.d.ts"
+      ],
+      "*": [
+        "./dist/esm/index.d.ts"
+      ]
+    }
+  },
   "files": [
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
     "dist",
-    "README.md",
-    "CHANGELOG.md"
+    "docs/API.md",
+    "docs/ARCHITECTURE.md",
+    "examples"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "examples:check": "node examples/basic.mjs && node examples/commonjs.cjs",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "lint:docs": "markdownlint-cli2 README.md CONTRIBUTING.md SECURITY.md CODE_OF_CONDUCT.md CHANGELOG.md AGENTS.md \"docs/**/*.md\" \"!docs/node_modules/**\" \"!docs/dist/**\" .github/PULL_REQUEST_TEMPLATE.md",
+    "package:check": "publint && attw --pack . && node scripts/verify-package.mjs",
     "smoke:consumer": "node scripts/consumer-smoke.mjs",
-    "verify": "pnpm run typecheck && pnpm run test && pnpm run build && pnpm run smoke:consumer"
+    "verify": "pnpm run lint && pnpm run lint:docs && pnpm run typecheck && pnpm run coverage && pnpm run build && pnpm run examples:check && pnpm run package:check && pnpm run smoke:consumer",
+    "prepack": "node scripts/build.mjs",
+    "docs:dev": "pnpm --filter persistence-drizzle-docs dev",
+    "docs:build": "pnpm --filter persistence-drizzle-docs build",
+    "docs:check": "pnpm --filter persistence-drizzle-docs check",
+    "prepare": "simple-git-hooks"
   },
   "peerDependencies": {
     "drizzle-orm": ">=0.45.2 <1"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@biomejs/biome": "^2.5.15",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
     "@types/node": "^26.6.4",
+    "@vitest/coverage-v8": "^5.0.3",
     "drizzle-orm": "0.45.3",
+    "lint-staged": "^17.6.0",
+    "markdownlint-cli2": "^0.23.3",
+    "publint": "^0.3.25",
+    "simple-git-hooks": "^2.14.0",
     "typescript": "~7.0.2",
     "vitest": "^5.0.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged",
+    "commit-msg": "pnpm exec commitlint --edit $1"
+  },
+  "lint-staged": {
+    "*.{ts,js,mjs,cjs,json}": [
+      "biome check --write --no-errors-on-unmatched"
+    ],
+    "*.md": [
+      "markdownlint-cli2"
+    ]
   }
 }

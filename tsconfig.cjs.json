@@ -3,7 +3,8 @@
   "compilerOptions": {
     "module": "CommonJS",
     "moduleResolution": "bundler",
-    "declaration": false,
+    "declaration": true,
+    "declarationMap": true,
     "noEmit": false,
     "outDir": "dist/cjs",
     "rootDir": "src",

@@ -1,0 +1,36 @@
+name: Bug report
+description: Report reproducible incorrect behavior in persistence-drizzle.
+title: "fix: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: For security vulnerabilities, use the private reporting link in SECURITY.md.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the observed behavior and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include the smallest runnable code sample, the schema and migrations involved, and exact commands.
+      render: ts
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: persistence-drizzle, drizzle-orm, the SQLite engine or driver, Node.js, and operating system.
+      placeholder: persistence-drizzle 0.1.0; drizzle-orm 0.45.3; node:sqlite; Node 26; macOS 26
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add stack traces, the statements that ran, or other useful details. Do not paste real save data.

@@ -1,0 +1,14 @@
+# persistence-drizzle
+
+> A typed Drizzle ORM database over any SQLite driver: one FIFO lock serializing every statement, BEGIN IMMEDIATE
+> transactions that hold it, drizzle-kit migrations at open that refuse unknown or drifted state, typed Preferences
+> and a hardened export envelope. Drivers for Capacitor SQLite and node:sqlite.
+
+## Docs
+
+- [Documentation site](https://jonbogaty.com/persistence-drizzle/): the published, browsable version of everything below.
+- [README](https://github.com/jbcom/persistence-drizzle/blob/main/README.md): install, quick start, API overview, rules.
+- [API reference](https://github.com/jbcom/persistence-drizzle/blob/main/docs/API.md): signatures and failure behavior of every export.
+- [Architecture](https://github.com/jbcom/persistence-drizzle/blob/main/docs/ARCHITECTURE.md): the lock, transaction and migration invariants.
+- [AGENTS.md](https://github.com/jbcom/persistence-drizzle/blob/main/AGENTS.md): toolchain, invariants not to violate, and doc/test sync obligations.
+- [CONTRIBUTING.md](https://github.com/jbcom/persistence-drizzle/blob/main/CONTRIBUTING.md): local setup, the `pnpm verify` gate, commit and release conventions.

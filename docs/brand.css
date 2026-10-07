@@ -1,0 +1,10 @@
+:root {
+  --sourcey-primary: #1d4e5f;
+  --sourcey-primary-light: #3a8da6;
+  --sourcey-primary-dark: #0e2630;
+  --persistence-accent: #8a5a1f;
+}
+
+a:hover {
+  color: var(--persistence-accent);
+}

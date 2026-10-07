@@ -1,0 +1,16 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "persistence-drizzle",
+  "description": "A typed Drizzle ORM database over any SQLite driver: one lock, BEGIN IMMEDIATE transactions, drizzle-kit migrations at open, typed Preferences and a hardened export envelope.",
+  "branch": "main",
+  "folders": ["docs", "src", "examples"],
+  "excludeFolders": ["node_modules", "dist", "coverage", "docs/dist", "docs/node_modules"],
+  "excludeFiles": ["CHANGELOG.md"],
+  "rules": [
+    "Use database.transaction(fn) and the tx it provides; never db.transaction, which is refused.",
+    "Inside transaction(fn), use tx, not db: db waits for the lock the transaction holds.",
+    "Every writer on the connection goes through the database: db, transaction, exclusive or guardSnapshots.",
+    "Never edit a shipped migration; generate a new one. Opening refuses drift and unknown applied migrations.",
+    "Export the domain value in an envelope, not table rows."
+  ]
+}

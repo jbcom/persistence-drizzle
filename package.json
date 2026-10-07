@@ -1,0 +1,75 @@
+{
+  "name": "@arcade-cabinet/persistence-drizzle",
+  "version": "0.1.0",
+  "description": "A typed Drizzle ORM layer for arcade-cabinet games, composed over @arcade-cabinet/persistence-save's one SQLite connection (Capacitor SQLite on native, jeep-sqlite on the web) and node:sqlite in Node tests: drizzle-kit migrations run at startup, serialized writes and transactions, a lock shared with persistence-save's snapshot saves, typed Preferences, and a hardened save envelope for export and import. Extracted from the Drizzle-over-Capacitor clients in grailguard, concrete-vermin, kings-road and a-good-old-fashioned-adventure.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbcom/curse-of-the-mummy.git",
+    "directory": "packages/persistence-drizzle"
+  },
+  "bugs": {
+    "url": "https://github.com/jbcom/curse-of-the-mummy/issues"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.cjs"
+    },
+    "./capacitor": {
+      "types": "./dist/esm/capacitor.d.ts",
+      "import": "./dist/esm/capacitor.js",
+      "require": "./dist/cjs/capacitor.cjs"
+    },
+    "./node": {
+      "types": "./dist/esm/node.d.ts",
+      "import": "./dist/esm/node.js",
+      "require": "./dist/cjs/node.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "smoke:consumer": "node scripts/consumer-smoke.mjs",
+    "verify": "pnpm run typecheck && pnpm run test && pnpm run build && pnpm run smoke:consumer"
+  },
+  "peerDependencies": {
+    "@arcade-cabinet/persistence-save": "^0.1.2",
+    "drizzle-orm": ">=0.45.2 <1"
+  },
+  "peerDependenciesMeta": {
+    "@arcade-cabinet/persistence-save": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@arcade-cabinet/persistence-save": "0.1.2",
+    "@capacitor-community/sqlite": "8.1.1",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/preferences": "8.0.1",
+    "@types/node": "^24.13.3",
+    "drizzle-orm": "0.45.3",
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.3"
+  }
+}

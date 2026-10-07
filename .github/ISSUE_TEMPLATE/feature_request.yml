@@ -1,5 +1,5 @@
 name: Feature request
-description: Propose a focused addition that fits persistence-drizzle's scope: a typed Drizzle layer over one SQLite connection.
+description: "Propose a focused addition that fits persistence-drizzle's scope: a typed Drizzle layer over one SQLite connection."
 title: "feat: "
 labels: [enhancement]
 body:

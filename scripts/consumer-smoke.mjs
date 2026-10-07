@@ -44,6 +44,7 @@ try {
       cwd: pkgRoot,
       stdio: 'inherit',
       env: anonymousEnv,
+      shell: process.platform === 'win32',
     })
     const tarball = readdirSync(scratch).find((file) => file.endsWith('.tgz'))
     if (!tarball) throw new Error('npm pack produced no tarball')
@@ -74,7 +75,7 @@ try {
       source,
       `drizzle-orm@${drizzleVersion}`,
     ],
-    { cwd: consumer, stdio: 'inherit', env: anonymousEnv },
+    { cwd: consumer, stdio: 'inherit', env: anonymousEnv, shell: process.platform === 'win32' },
   )
 
   const esm = `

@@ -22,8 +22,16 @@ beforeEach(() => {
 })
 afterEach(() => rmSync(dir, { recursive: true, force: true }))
 
-const open = (migrations = MIGRATIONS, location = file) =>
-  openDatabase({ driver: createNodeSqliteDriver(location), schema, migrations, now: () => 42 })
+const open = async (migrations = MIGRATIONS, location = file) => {
+  const driver = createNodeSqliteDriver(location)
+  try {
+    return await openDatabase({ driver, schema, migrations, now: () => 42 })
+  } catch (error) {
+    // Opening can reject before returning a database; the fixture still owns its driver.
+    await driver.close()
+    throw error
+  }
+}
 
 const tables = (driver: ReturnType<typeof createNodeSqliteDriver>) =>
   (

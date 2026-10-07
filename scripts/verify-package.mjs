@@ -28,7 +28,12 @@ try {
   const packOutput = execFileSync(
     'npm',
     ['pack', '--pack-destination', scratch, '--ignore-scripts', '--json'],
-    { cwd: packageRoot, encoding: 'utf8', env: npmEnvironment },
+    {
+      cwd: packageRoot,
+      encoding: 'utf8',
+      env: npmEnvironment,
+      shell: process.platform === 'win32',
+    },
   )
   // Any other lifecycle script writing text around the JSON array must not break parsing: try each
   // line-leading "[" until one parses.

@@ -5,7 +5,7 @@
 //                         read the merged history. No Copilot review or Code Quality rule: both spend AI credits
 //                         even on public repositories (owner 2026-10-07; GitHub billing docs).
 //   release-tag-integrity tags: release-please tags never move or disappear
-// Usage: node apply-oss-rulesets.mjs <repo> '<check context>[;<check context>...]'
+// Usage: node <path-to-this-script> <repo> '<check context>[;<check context>...]'
 import { execFileSync } from 'node:child_process'
 
 const [
@@ -13,7 +13,7 @@ const [
   checksArg = 'CI / gate;title;Repository Policy / gate;Dependency Review / gate',
 ] = process.argv.slice(2)
 if (!repo || !checksArg)
-  throw new Error('usage: apply-oss-rulesets.mjs <repo> <checks;semicolon;separated>')
+  throw new Error(`usage: node ${process.argv[1]} <repo> <checks;semicolon;separated>`)
 const REPO = `jbcom/${repo}`
 // Semicolon-separated: check names such as "Verify (ubuntu-24.04, Node 26)" contain commas.
 const checks = checksArg.split(';').map((context) => ({ context }))
@@ -74,9 +74,12 @@ const rulesets = [
   },
 ]
 
+// Repository mutation endpoints cannot edit inherited organization/enterprise rules.
 const existing = JSON.parse(
-  execFileSync('gh', ['api', `repos/${REPO}/rulesets`], { encoding: 'utf8' }),
-)
+  execFileSync('gh', ['api', `repos/${REPO}/rulesets?includes_parents=false`], {
+    encoding: 'utf8',
+  }),
+).filter((ruleset) => ruleset.source_type === 'Repository')
 // The superseded non-main ruleset carried the AI-billed Code Quality rule.
 for (const stale of existing.filter((r) => r.name === 'pull-request-review')) {
   execFileSync('gh', [

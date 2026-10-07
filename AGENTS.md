@@ -5,7 +5,9 @@ code alone.
 
 ## Toolchain
 
-- Supported runtimes: Node.js 22, 24 and 26. Local development defaults to Node 26; no exact patch is required.
+- Supported runtimes: Node.js 22.16.0 or later, including the maintained 22, 24 and 26 lines. The `./node` entry point
+  needs that floor for `node:sqlite`'s `StatementSync.setReturnArrays`; the root and `./capacitor` entry points import no
+  Node engine. Local development defaults to Node 26; no exact development patch is required.
 - Package manager: pnpm, pinned in `package.json#packageManager`. Use `mise install` (reads `mise.toml`) for a matching
   local Node/pnpm toolchain, or `corepack enable` if mise isn't available.
 - This is a pnpm workspace with two members: `.` (the published library) and `docs/` (the private Sourcey

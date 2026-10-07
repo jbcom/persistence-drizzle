@@ -129,5 +129,7 @@ function readMigrationsFolder(folder: string): Migration[]
 ```
 
 `location` is a file path or `:memory:` (the default). The returned driver exposes `raw`, the underlying `DatabaseSync`,
-for assertions below Drizzle. `readMigrationsFolder` reads `meta/_journal.json` and every `.sql` file of a drizzle-kit
-output folder.
+for assertions below Drizzle. This entry point requires Node.js 22.16.0 or later because it uses
+`StatementSync.setReturnArrays()` to preserve the `SqlDriver` row-array contract. `readMigrationsFolder` reads
+`meta/_journal.json` and every `.sql` file of a drizzle-kit output folder. The root and Capacitor entry points import no
+Node engine.

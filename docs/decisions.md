@@ -43,6 +43,10 @@ native addon.
 
 ## Supported Node lines
 
-Node.js 22, 24 and 26 are supported, with `engines.node` set to `>=22`. The full verification chain, including
-the packed ESM and CommonJS consumer smoke using `node:sqlite`, passes on Node 22 and 26. CI verifies all three
-maintained lines on Linux and Node 26 on Windows. Local development defaults to major 26 without requiring an exact patch.
+Node.js 22.16.0 or later is supported, with `engines.node` set to `>=22.16.0`. The `./node` entry point calls
+`StatementSync.setReturnArrays()` to keep `SqlDriver.query` rows in column-order arrays; Node added that API in 22.16.0.
+The root and `./capacitor` entry points import no Node engine, but the package declares the adapter's real floor so an
+install never advertises a broken optional entry point. The full verification chain, including the packed ESM and
+CommonJS consumer smoke using `node:sqlite`, passes on Node 22.16.0 and 26. CI verifies all maintained major lines
+(22, 24 and 26) on Linux and Node 26 on Windows. Local development defaults to major 26 without requiring an exact
+development patch.

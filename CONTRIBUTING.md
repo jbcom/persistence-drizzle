@@ -12,8 +12,8 @@ pnpm install
 pnpm verify   # lint, typecheck, test with coverage, build, examples, package checks, consumer smoke
 ```
 
-Without mise, use `corepack` so pnpm matches the version pinned in `package.json#packageManager`, on any Node release
-in the `engines.node` range (`>=24`; CI verifies 24 and 26):
+Without mise, use `corepack` so pnpm matches the version pinned in `package.json#packageManager`, on Node 22.16.0 or
+later. CI verifies the maintained 22, 24 and 26 major lines:
 
 ```sh
 corepack enable

@@ -9,7 +9,9 @@ description: Install persistence-drizzle, open a database with migrations, write
 npm install persistence-drizzle drizzle-orm
 ```
 
-Node.js 22, 24 and 26 are supported. `drizzle-orm` (`>=0.45.2 <1`) is the only peer dependency.
+Node.js 22.16.0 or later is supported, including the maintained 22, 24 and 26 lines. The root and Capacitor entry
+points are engine-free; this `persistence-drizzle/node` example uses `node:sqlite` and needs that Node floor.
+`drizzle-orm` (`>=0.45.2 <1`) is the only peer dependency.
 
 ## Open a database
 

@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Verify every maintained Node line, with engines.node as the floor (>=22).
+        # Verify every maintained Node line; the package floor is >=22.16.0.
         # Windows covers the path handling of readMigrationsFolder.
         include:
           - os: ubuntu-24.04

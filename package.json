@@ -54,19 +54,9 @@
     "verify": "pnpm run typecheck && pnpm run test && pnpm run build && pnpm run smoke:consumer"
   },
   "peerDependencies": {
-    "@arcade-cabinet/persistence-save": "^0.1.2",
     "drizzle-orm": ">=0.45.2 <1"
   },
-  "peerDependenciesMeta": {
-    "@arcade-cabinet/persistence-save": {
-      "optional": true
-    }
-  },
   "devDependencies": {
-    "@arcade-cabinet/persistence-save": "0.1.2",
-    "@capacitor-community/sqlite": "8.1.1",
-    "@capacitor/core": "^8.5.2",
-    "@capacitor/preferences": "8.0.1",
     "@types/node": "^24.13.3",
     "drizzle-orm": "0.45.3",
     "typescript": "~5.9.3",
